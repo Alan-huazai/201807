@@ -1,0 +1,10 @@
+CC=gcc
+
+main: main.c MAX.o MIN.o
+	$(CC) main.c MAX.o MIN.o -o main
+MAX.o: MAX.c
+	$(CC) -c MAX.c
+MIN.o: MIN.c
+	$(CC) -c MIN.c
+clean:
+	rm *.o main

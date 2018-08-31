@@ -1,0 +1,41 @@
+ ///
+ /// @file    SafeFile.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-14 17:28:16
+ ///
+ 
+#include <iostream>
+#include <string>
+#include <iostream>
+using std::string;
+using std::cout;
+using std::endl;
+class SafeFile
+{
+public:
+	SafeFile(FILE *	filePointer)
+	:_filePointer(filePointer)
+	{
+		
+	}
+	void write(const string &msg)
+	{
+		fwrite(msg.c_str(),msg.size(),1,_filePointer)
+	}
+	~SafeFile()
+	{
+		if(_filePointer)
+		{
+			fclose(_filePointer);
+			cout<<"~SafeFile() fclose"<<endl;
+		}
+	}
+private:
+	FILE * _filePointer;
+};
+int main(void)
+{
+	SafeFile sf(fopen("test.txt","wr+");
+	sf.write("hello,world");
+	return 0;
+}
